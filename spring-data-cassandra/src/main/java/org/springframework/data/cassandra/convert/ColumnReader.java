@@ -89,8 +89,14 @@ public class ColumnReader {
 		if (type.equals(DataType.cboolean())) {
 			return new Boolean(row.getBool(i));
 		}
-		if (type.equals(DataType.timestamp())) {
+		if (type.equals(DataType.time())) {
+			return row.getTime(i);
+		}
+		if (type.equals(DataType.date())) {
 			return row.getDate(i);
+		}
+		if (type.equals(DataType.timestamp())) {
+			return row.getTimestamp(i);
 		}
 		if (type.equals(DataType.blob())) {
 			return row.getBytes(i);
