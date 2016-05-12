@@ -15,6 +15,8 @@
  */
 package org.springframework.cassandra.test.integration.core.template;
 
+import java.util.Date;
+
 /**
  * Test POJO
  * 
@@ -27,6 +29,7 @@ public class Book {
 	private String title;
 	private String author;
 	private int pages;
+	private Date publicationDate;
 
 	/**
 	 * @return Returns the isbn.
@@ -83,6 +86,14 @@ public class Book {
 	public void setPages(int pages) {
 		this.pages = pages;
 	}
+	
+	public Date getPublicationDate() {
+		return publicationDate;
+	}
+	
+	public void setPublicationDate(Date publicationDate) {
+		this.publicationDate = publicationDate;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -93,6 +104,7 @@ public class Book {
 		sb.append("tile -> " + title).append("\n");
 		sb.append("author -> " + author).append("\n");
 		sb.append("pages -> " + pages).append("\n");
+		sb.append("publicationDate -> " + publicationDate).append("\n");
 		return sb.toString();
 	}
 }
