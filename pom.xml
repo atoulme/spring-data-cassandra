@@ -5,7 +5,7 @@
 
 	<groupId>org.springframework.data</groupId>
 	<artifactId>spring-data-cassandra-parent</artifactId>
-	<version>1.5.0.BUILD-SNAPSHOT</version>
+	<version>1.5.0.FORK_CASSV3.001</version>
 	<packaging>pom</packaging>
 
 	<name>Spring Data Cassandra</name>
@@ -33,8 +33,8 @@
 		<el.version>1.0</el.version>
 		<failsafe.version>2.16</failsafe.version>
 		<jamm.version>0.3.1</jamm.version>
-		<cassandra.version>3.0.0</cassandra.version>
-		<cassandra-driver-dse.version>3.0.0-rc1</cassandra-driver-dse.version>
+		<cassandra.version>3.5</cassandra.version>
+		<cassandra-driver-core.version>3.0.1</cassandra-driver-core.version>
 	</properties>
 
 	<developers>
@@ -78,6 +78,52 @@
 		<dependencies>
 			<dependency>
 				<groupId>com.datastax.cassandra</groupId>
+				<artifactId>cassandra-driver-core</artifactId>
+				<version>${cassandra-driver-core.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>slf4j-log4j12</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>log4j</artifactId>
+						<groupId>log4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>guava</artifactId>
+						<groupId>com.google.guava</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>netty-handler</artifactId>
+						<groupId>io.netty</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.datastax.cassandra</groupId>
+				<artifactId>cassandra-driver-extras</artifactId>
+				<version>${cassandra-driver-core.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>slf4j-log4j12</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>log4j</artifactId>
+						<groupId>log4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>guava</artifactId>
+						<groupId>com.google.guava</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>netty-handler</artifactId>
+						<groupId>io.netty</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.datastax.cassandra</groupId>
 				<artifactId>cassandra-driver-dse</artifactId>
 				<version>${cassandra-driver-dse.version}</version>
 				<exclusions>
@@ -113,7 +159,19 @@
 				<version>${slf4j}</version>
 				<scope>test</scope>
 			</dependency>
-
+      <dependency>
+      	<groupId>ch.qos.logback</groupId>
+      	<artifactId>logback-core</artifactId>
+      	<version>1.1.7</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+      	<groupId>ch.qos.logback</groupId>
+      	<artifactId>logback-classic</artifactId>
+      	<version>1.1.7</version>
+        <scope>test</scope>
+      </dependency>
+      
 			<!-- CDI -->
 			<dependency>
 				<groupId>javax.enterprise</groupId>
@@ -218,10 +276,6 @@
 	</pluginRepositories>
 
 	<dependencies>
-		<dependency>
-			<groupId>com.datastax.cassandra</groupId>
-			<artifactId>cassandra-driver-dse</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>com.github.jbellis</groupId>
 			<artifactId>jamm</artifactId>

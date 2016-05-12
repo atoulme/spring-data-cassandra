@@ -19,6 +19,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.net.InetSocketAddress;
+
 import org.junit.Test;
 import org.springframework.cassandra.support.CassandraExceptionTranslator;
 import org.springframework.cassandra.support.exception.CassandraInvalidConfigurationInQueryException;
@@ -71,7 +73,8 @@ public class CassandraExceptionTranslatorTest {
 	@Test
 	public void testInvalidConfigurationInQueryException() {
 		String msg = "msg";
-		InvalidQueryException cx = new InvalidConfigurationInQueryException(msg);
+		InetSocketAddress address = new InetSocketAddress(10000);
+		InvalidQueryException cx = new InvalidConfigurationInQueryException(address, msg);
 		DataAccessException dax = tx.translateExceptionIfPossible(cx);
 		assertNotNull(dax);
 		assertTrue(dax instanceof CassandraInvalidConfigurationInQueryException);

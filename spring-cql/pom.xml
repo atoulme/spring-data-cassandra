@@ -12,7 +12,7 @@
 	<parent>
 		<groupId>org.springframework.data</groupId>
 		<artifactId>spring-data-cassandra-parent</artifactId>
-		<version>1.5.0.BUILD-SNAPSHOT</version>
+		<version>1.5.0.FORK_CASSV3.001</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
@@ -48,7 +48,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.datastax.cassandra</groupId>
-			<artifactId>cassandra-driver-dse</artifactId>
+			<artifactId>cassandra-driver-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>javax.enterprise</groupId>
